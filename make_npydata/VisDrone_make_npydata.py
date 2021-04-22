@@ -6,15 +6,15 @@ if not os.path.exists('./npydata'):
 
 '''please set your dataset path'''
 try:
-    VisDrone_train_path='/dssg/weixu/data_wei/VisDrone/train_data/images/'
-    VisDrone_test_path='/dssg/weixu/data_wei/VisDrone/test_data/images/'
+    VisDrone_train_path='/dssg/weixu/data_wei/VisDrone/train_data_class8/images/'
+    VisDrone_test_path='/dssg/weixu/data_wei/VisDrone/test_data_class8/images/'
 
     train_list = []
     for filename in os.listdir(VisDrone_train_path):
         if filename.split('.')[1] == 'jpg':
             train_list.append(VisDrone_train_path+filename)
     train_list.sort()
-    np.save('./npydata/VisDrone_train.npy', train_list)
+    np.save('./npydata/VisDrone_train_class8.npy', train_list)
 
 
     test_list = []
@@ -22,7 +22,7 @@ try:
         if filename.split('.')[1] == 'jpg':
             test_list.append(VisDrone_test_path+filename)
     test_list.sort()
-    np.save('./npydata/VisDrone_test.npy', test_list)
+    np.save('./npydata/VisDrone_test_class8.npy', test_list)
     print("Generate VisDrone image list successfully")
 except:
     print("The VisDrone dataset path is wrong. Please check your path.")

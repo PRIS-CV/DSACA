@@ -10,7 +10,7 @@ parser.add_argument('--train_dataset', type=str, default='VisDrone',
                     help='choice train dataset')
 # parser.add_argument('--task_id', type=str, default='./save_file_model/FPN',
 #                     help='save checkpoint directory')
-parser.add_argument('--task_id', type=str, default='./save_file_model/VisDrone_class2',
+parser.add_argument('--task_id', type=str, default='./save_file_model/VisDrone_class8',
                     help='save checkpoint directory')
 
 
@@ -27,7 +27,7 @@ parser.add_argument('--test_dataset', type=str, default='VisDrone',
                     help='choice train dataset')
 # parser.add_argument('--pre', type=str, default='./save_file_model/FPN/model_best.pth',
 #                     help='pre-trained model directory')
-parser.add_argument('--pre', type=str, default='./save_file_model/VisDrone_class2/checkpoint.pth',
+parser.add_argument('--pre', type=str, default='./save_file_model/VisDrone_class8/model_best.pth',
                     help='pre-trained model directory')
 
 # Optimization specifications
@@ -61,7 +61,7 @@ parser.add_argument('--max_epoch', type=int, default=300,
 #                     help='which epoch to test only')
 parser.add_argument('--lamd', type=float, default=1.0,
                     help='Cross Entropy rate')
-parser.add_argument('--gpu_id', type=str, default='6',
+parser.add_argument('--gpu_id', type=str, default='7',
                     help='gpu id')
 
 args = parser.parse_args()
