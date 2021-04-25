@@ -29,7 +29,7 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
          └─── VisDrone
             └───train_data
             └───test_data
-      -/DSACA-main/pre_train
+      -/DSACA-main/pre_trained
          └─── RSOC_class2.pth
          └─── VisDrone_class8.pth
       -/DSACA-main/density_generate
