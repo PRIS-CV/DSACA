@@ -44,3 +44,9 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
 - run `make_npydata/RSOC.py` and `make_npydata/VisDrone_class8.py` for target path pre-saving.
 - Edit `config.py` for training-parameters seting.
 - run `RSOC_train_class2_CAM_DSAM.py` or `VisDrone_train_class8_CAM_DSAM.py` for training & testing.
+
+## Contact
+Thanks for your attention!
+If you have any suggestion or question, you can leave a message here or contact us directly:
+- xuwei2020@bupt.edu.cn
+- mazhanyu@bupt.edu.cn
