@@ -36,7 +36,6 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
       -/DSACA-main/density_generate
          └─── RSOC.py
          └─── VisDrone_class8.py
-         └─── ...
       -/DSACA-main/make_npydata
          └─── RSOC_make_npydata.py
          └─── VisDrone_make_npydata.py
