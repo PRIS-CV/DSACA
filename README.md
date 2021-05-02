@@ -13,8 +13,8 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
 
 ## Pre trained model
 `RSOC_class2.pth` and `VisDrone_class8.pth` download.
-- RSOC model best (password:t15a) [Link](https://pan.baidu.com/s/1GjwsWG6FXu6D0DRGumRQ5Q).
 - VisDrone model best (password:qsw6) [Link](https://pan.baidu.com/s/1nORmkUbV1c-5MLZvYKToiA).
+- RSOC model best (password:t15a) [Link](https://pan.baidu.com/s/1GjwsWG6FXu6D0DRGumRQ5Q).
 
 ## Data
 - Download datasets  
@@ -23,41 +23,41 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
 ```
   -/DSACA-main
       -/DSACA-main/dataset
-         └─── RSOC
-            └───train
-            └───val
          └─── VisDrone
             └───train_data
             └───test_data
+         └─── RSOC
+            └───train
+            └───val
       -/DSACA-main/pre_trained
-         └─── RSOC_class2.pth
          └─── VisDrone_class8.pth
+         └─── RSOC_class2.pth
          └─── pre_trained.md
       -/DSACA-main/density_generate
-         └─── RSOC.py
          └─── VisDrone.py
+         └─── RSOC.py
       -/DSACA-main/make_npydata
-         └─── RSOC_make_npydata.py
          └─── VisDrone_make_npydata.py
+         └─── RSOC_make_npydata.py
       -/DSACA-main/Network
-         └─── baseline_DSAM_CAM.py
          └─── VisDrone_class8.py
+         └─── baseline_DSAM_CAM.py
       -/DSACA-main/images
          └─── intro.png
       └─── config.py
       └─── dataset.py
       └─── image.py
       └─── utils.py
-      └─── RSOC_train_class2_CAM_DSAM.py
       └─── VisDrone_train_class8_CAM_DSAM.py
+      └─── RSOC_train_class2_CAM_DSAM.py
       └─── README.md
 ```
 
 # Train & Test
-- Cd ` density_generate`  then run `RSOC.py` and ` VisDrone.py` for dataset pre-processing.
-- Cd `make_npydata`  then run ` RSOC.py` and `VisDrone.py` for target path pre-saving.
+- Cd ` density_generate`  then run `VisDrone.py` and `RSOC.py` for dataset pre-processing.
+- Cd `make_npydata`  then run `VisDrone.py` and `RSOC.py` for target path pre-saving.
 - Edit `config.py` for training-parameters seting.
-- Run `RSOC_train_class2_CAM_DSAM.py` or `VisDrone_train_class8_CAM_DSAM.py` for training & testing.
+- Run `RSOC_train_class8_CAM_DSAM.py` or `VisDrone_train_class2_CAM_DSAM.py` for training & testing.
 
 ## Contact
 Thanks for your attention!
