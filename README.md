@@ -24,8 +24,8 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
   -/DSACA-main
       -/DSACA-main/dataset
          └─── VisDrone
-            └───train_data
-            └───test_data
+            └───VisDrone2019-DET-train
+            └───VisDrone2019-DET-val
          └─── RSOC
             └───train
             └───val
