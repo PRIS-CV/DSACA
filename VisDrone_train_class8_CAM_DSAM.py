@@ -76,8 +76,8 @@ def setup_seed(seed):
 def main():
     setup_seed(0)
 
-    train_file = './npydata/VisDrone_train_class8.npy'
-    val_file = './npydata/VisDrone_test_class8.npy'
+    train_file = './npydata/VisDrone_train.npy'
+    val_file = './npydata/VisDrone_test.npy'
 
     with open(train_file, 'rb') as outfile:
         train_list = np.load(outfile).tolist()
@@ -151,12 +151,12 @@ def main():
         start = time.time()
         adjust_learning_rate(optimizer, epoch)
 
-        # if epoch <= args.max_epoch:
-        #     # train(train_pre_load, model, criterion, optimizer, epoch, args,scheduler )
-        #     train(train_list, model, criterion, optimizer, epoch, args,scheduler )
-
         end_train = time.time()
         print("train time ", end_train-start)
+
+        if epoch <= args.max_epoch:
+            # train(train_pre_load, model, criterion, optimizer, epoch, args,scheduler )
+            train(train_list, model, criterion, optimizer, epoch, args,scheduler )
 
         #prec1, visi = validate(test_pre_load, model, args)
         mae, mse, visi = validate(val_list, model, args)
@@ -196,15 +196,15 @@ def main():
         print('*\tbest motor_MAE {motor_mae:.3f} \tbest motor_MSE {motor_mse:.3f}'.format(motor_mae=best_motor_mae,motor_mse=best_motor_mse))
 
 
-        # save_checkpoint({
-        #     'epoch': epoch + 1,
-        #     'arch': args.pre,
-        #     'state_dict': model.state_dict(),
-        #     'best_prec1': args.best_pred,
-        #     'optimizer': optimizer.state_dict(),
-        # }, visi, is_best, args.task_id)
-        # end_val = time.time()
-        # print("val time",end_val - end_train)
+        save_checkpoint({
+            'epoch': epoch + 1,
+            'arch': args.pre,
+            'state_dict': model.state_dict(),
+            'best_prec1': args.best_pred,
+            'optimizer': optimizer.state_dict(),
+        }, visi, is_best, args.task_id)
+        end_val = time.time()
+        print("val time",end_val - end_train)
 
 
 def crop(d, g):
@@ -435,7 +435,7 @@ def validate(Pre_data, model, args):
 
         if i%50 == 0:
             print(i)
-            source_img = cv2.imread('/dssg/weixu/data_wei/VisDrone/test_data_class8/images/{}'.format(fname[0]))
+            source_img = cv2.imread('./dataset/VisDrone/test_data_class8/images/{}'.format(fname[0]))
             feature_test(source_img, mask_map.data.cpu().numpy(), target.data.cpu().numpy(), mask_pre.data.cpu().numpy(),
                          density_map_pre.data.cpu().numpy(),
                          './vision_map/VisDrone_class8/img{}.jpg'.format(str(i)), VisDrone_category)

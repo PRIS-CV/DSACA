@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 from shutil import copyfile
 from scipy.ndimage.filters import gaussian_filter
 
-root = '/dssg/weixu/data_wei/VisDrone'
+root = '../dataset/VisDrone'
 
 test_label_pth = os.path.join(root, 'VisDrone2019-DET-val/annotations')
 test_img_pth = os.path.join(root, 'VisDrone2019-DET-val/images')
@@ -95,98 +95,6 @@ def feature_test(feature, save_pth, category):
         save_data = cv2.applyColorMap(save_data, 2)
         cv2.imwrite(os.path.join(save_pth, '{}{}'.format(category[i+1], '.png')), save_data)
 
-'''绘制检测框'''
-def VisDrone_category_test(img, bbox, color_buf, VisDrone_category_buf):
-    if not os.path.exists('./test_img'):
-        os.makedirs('./test_img')
-    for item in bbox:
-        img = draw_bounding_box_on_image(img, int(item[0]), int(item[1]), int(item[0])+int(item[2]), int(item[1])+int(item[3]),color=color_buf[int(item[5])],
-                                         thickness=2, display_str_list = VisDrone_category_buf[int(item[5])], use_normalized_coordinates=False)
-    cv2.imwrite('./test_img/category_test.png',img)
-
-def draw_bounding_box_on_image(image, xmin, ymin, xmax, ymax,
-                               color='red', thickness=4,
-                               display_str_list=(),
-                               use_normalized_coordinates=True):
-    """
-    Args:
-      image: a cv2 object.
-      ymin: ymin of bounding box.
-      xmin: xmin of bounding box.
-      ymax: ymax of bounding box.
-      xmax: xmax of bounding box.
-      color: color to draw bounding box. Default is red.
-      thickness: line thickness. Default value is 4.
-      display_str_list: list of strings to display in box
-                        (each to be shown on its own line).
-      use_normalized_coordinates: If True (default), treat coordinates
-        ymin, xmin, ymax, xmax as relative to the image.  Otherwise treat
-        coordinates as absolute.
-    """
-    image = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    draw = ImageDraw.Draw(image)
-    # 获取图像的宽度与高度
-    im_width, im_height = image.size
-    if use_normalized_coordinates:
-        (left, right, top, bottom) = (xmin * im_width, xmax * im_width,
-                                      ymin * im_height, ymax * im_height)
-    else:
-        (left, right, top, bottom) = (xmin, xmax, ymin, ymax)
-
-    # 绘制Box框
-    draw.line([(left, top), (left, bottom), (right, bottom),
-               (right, top), (left, top)], width=thickness, fill=color)
-
-    # 加载字体
-    try:
-        font = ImageFont.truetype("font/simsun.ttc", 24, encoding="utf-8")
-    except IOError:
-        font = ImageFont.load_default()
-
-    # 计算显示文字的宽度集合 、高度集合
-    display_str_width = [font.getsize(ds)[0] for ds in display_str_list]
-    display_str_height = [font.getsize(ds)[1] for ds in display_str_list]
-    # 计算显示文字的总宽度
-    total_display_str_width = sum(display_str_width) + max(display_str_width) * 1.1
-    # 计算显示文字的最大高度
-    total_display_str_height = max(display_str_height)
-
-    if top > total_display_str_height:
-        text_bottom = top
-    else:
-        text_bottom = bottom + total_display_str_height
-
-    # 计算文字背景框最右侧可到达的像素位置
-    if right < (left + total_display_str_width):
-        text_right = right
-    else:
-        text_right = left + total_display_str_width
-
-    # 绘制文字背景框
-    draw.rectangle(
-        [(left, text_bottom), (text_right, text_bottom - total_display_str_height)],
-        fill=color)
-
-    # 计算文字背景框可容纳的文字，若超出部分不显示，改为补充“..”
-    for index in range(len(display_str_list[::1])):
-        current_right = (left + (max(display_str_width)) + sum(display_str_width[0:index + 1]))
-
-        if current_right < text_right:
-            #print(current_right)
-            display_str = display_str_list[:index + 1]
-        else:
-            display_str = display_str_list
-            break
-
-    # 绘制文字
-    draw.text(
-        (left + max(display_str_width) / 2, text_bottom - total_display_str_height),
-        display_str,
-        fill=(255, 255, 255),
-        font=font)
-
-    return cv2.cvtColor(np.asarray(image), cv2.COLOR_RGB2BGR)
-
 ' 类别的顺序需要按照可视化来确定 '
 #“无视区域”，“行人”，“人”，“自行车”，“汽车”，“货车”，“卡车”，“三轮车”，“遮阳篷三轮车”，“公共汽车”，“摩托”，“其他” '
 VisDrone_category_buf = [ 'ignored-regions', 'pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor', 'others']
@@ -204,8 +112,7 @@ for path in path_sets:
 img_paths.sort()
 
 print('begin convert')
-with open("warning_message_class8.txt", "w") as f:
-    f.write('begin convert')
+
 space_num = 0 # 记录最多能存多少图
 for pth in img_paths:
     # pth='/dssg/weixu/data_wei/VisDrone/VisDrone2019-DET-train/annotations/0000007_05499_d_0000037.txt'
@@ -221,9 +128,6 @@ for pth in img_paths:
     img = cv2.imread(pth.replace('annotations', 'images').replace('txt', 'jpg'))
     source_shape = img.shape
     img = resize(img, 1024, 'img')
-
-    '''将检测框与类别画到图片上'''
-    VisDrone_category_test(img, bbox, color_buf, VisDrone_category_buf)
 
     ''' mask_map_points '''
     points = [] # 多边形的顶点坐标
@@ -280,34 +184,6 @@ for pth in img_paths:
     feature_test(density_map, target_pth.replace('images', 'gt_show').replace('.jpg', ''), VisDrone_category_buf)
     cv2.imwrite(os.path.join(target_pth.replace('images', 'gt_show').replace('.jpg', ''), os.path.basename(target_pth)) , np.multiply(img, mask[:,:,None]))
 
-    # distance_map = (255*(1-kpoint[[1,3]].copy())).astype(np.uint8)
-    # spatial_mask = (np.zeros([distance_map.shape[0], distance_map.shape[1], distance_map.shape[2]])).astype(np.uint8)
-    #
-    # spatial_mask[0]=cv2.distanceTransform(distance_map[0], cv2.DIST_L2, 5)
-    # spatial_mask[1]=cv2.distanceTransform(distance_map[1], cv2.DIST_L2, 5)
-    # # print(spatial_mask[0], np.max(spatial_mask), np.sum(spatial_mask))
-    #
-    # distance = 5
-    # spatial_mask[(spatial_mask >= 0) & (spatial_mask < 1 * distance)] = 1
-    # spatial_mask[(spatial_mask >= 1 * distance) & (spatial_mask < 2 * distance)] = 1
-    # spatial_mask[(spatial_mask >= 2 * distance) & (spatial_mask < 3 * distance)] = 1
-    # spatial_mask[(spatial_mask >= 3 * distance) & (spatial_mask < 4 * distance)] = 1
-    # spatial_mask[(spatial_mask >= 4 * distance) & (spatial_mask < 5 * distance)] = 1
-    # spatial_mask[(spatial_mask >= 5 * distance) & (spatial_mask < 6 * distance)] = 0
-    # spatial_mask[(spatial_mask >= 6 * distance) & (spatial_mask < 8 * distance)] = 0
-    # spatial_mask[(spatial_mask >= 8 * distance) & (spatial_mask < 12 * distance)] = 0
-    # spatial_mask[(spatial_mask >= 12 * distance) & (spatial_mask < 18 * distance)] = 0
-    # spatial_mask[(spatial_mask >= 18 * distance) & (spatial_mask < 28 * distance)] = 0
-    # spatial_mask[(spatial_mask >= 28 * distance)] = 0
-    #
-    # for mask_channel in range(spatial_mask.shape[0]):
-    #     print(np.sum(spatial_mask[mask_channel, :, :]))
-    #     save_data = 255 * spatial_mask[mask_channel, :, :] / np.max(spatial_mask[mask_channel, :, :])
-    #     save_data = save_data.astype(np.uint8)
-    #     save_data = cv2.applyColorMap(save_data, 2)
-    #     cv2.imwrite("mask_{}.jpg".format(str(mask_channel)), save_data)
-    #     # cv2.imwrite("mask_{}.jpg".format(str(mask_channel)), spatial_mask[mask_channel])
-
     '''
     “无视区域”，“行人”，“人”，“自行车”，“汽车”，“货车”，“卡车”，“三轮车”，“遮阳篷三轮车”，“公共汽车”，“摩托”，“其他” '
     VisDrone_category_buf = [ 'ignored-regions', 'pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor', 'others']
@@ -344,13 +220,6 @@ for pth in img_paths:
     spatial_mask[(spatial_mask >= 12 * distance) & (spatial_mask < 18 * distance)] = 8
     spatial_mask[(spatial_mask >= 18 * distance) & (spatial_mask < 28 * distance)] = 9
     spatial_mask[(spatial_mask >= 28 * distance)] = 10
-
-    for mask_channel in range(spatial_mask.shape[0]):
-        save_data = 255 * spatial_mask[mask_channel, :, :] / np.max(spatial_mask[mask_channel, :, :])
-        save_data = save_data.astype(np.uint8)
-        save_data = cv2.applyColorMap(save_data, 2)
-        cv2.imwrite("mask_{}.jpg".format(str(mask_channel)), save_data)
-        # cv2.imwrite("mask_{}.jpg".format(str(mask_channel)), spatial_mask[mask_channel])
 
     ''' h5 save '''
     with h5py.File(target_pth.replace('images', 'gt_density_map').replace('.jpg', '.h5'), 'w') as hf:

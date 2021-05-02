@@ -98,8 +98,8 @@ def pre_data(train_list, train):
 def main():
     setup_seed(0)
 
-    train_file = './npydata/RSOC_train_2048.npy'
-    val_file = './npydata/RSOC_test_2048.npy'
+    train_file = './npydata/RSOC_train.npy'
+    val_file = './npydata/RSOC_test.npy'
 
     with open(train_file, 'rb') as outfile:
         train_list = np.load(outfile).tolist()
@@ -151,9 +151,9 @@ def main():
         adjust_learning_rate(optimizer, epoch)
 
 
-        if epoch <= args.max_epoch:
-            # train(train_pre_load, model, criterion, optimizer, epoch, args,scheduler )
-            train(train_list, model, criterion, optimizer, epoch, args,scheduler )
+        # if epoch <= args.max_epoch:
+        #     # train(train_pre_load, model, criterion, optimizer, epoch, args,scheduler )
+        #     train(train_list, model, criterion, optimizer, epoch, args,scheduler )
 
         end_train = time.time()
         print("train time ", end_train-start)
@@ -386,7 +386,7 @@ def validate(Pre_data, model, args):
         # if i%50 == 0:
         if i %50 == 0:
             print(i)
-            source_img = cv2.imread('/dssg/weixu/data_wei/RSOC/test_data_RSOC_2048/images/{}'.format(fname[0]))
+            source_img = cv2.imread('./dataset/RSOC/test_data/images/{}'.format(fname[0]))
             feature_test(source_img, mask_map.data.cpu().numpy(), target.data.cpu().numpy(), mask_pre.data.cpu().numpy(), density_map_pre.data.cpu().numpy(),'./vision_map/rsoc_v4_mask_class2_2048/img{}.jpg'.format(str(i)), VisDrone_category)
 
 

@@ -6,47 +6,24 @@ if not os.path.exists('../npydata'):
 
 '''please set your dataset path'''
 try:
-    DOTA_train_path='/dssg/weixu/data_wei/RSOC/train_data_RSOC_2048/images/'
-    DOTA_test_path='/dssg/weixu/data_wei/RSOC/test_data_RSOC_2048/images/'
+    DOTA_train_path='../dataset/RSOC/train_data/images/'
+    DOTA_test_path='../dataset/RSOC/test_data/images/'
 
     train_list = []
     for filename in os.listdir(DOTA_train_path):
         if filename.split('.')[1] == 'png':
-            train_list.append(DOTA_train_path+filename)
+            train_list.append(DOTA_train_path.replace('..','.')+filename)
     train_list.sort()
-    np.save('../npydata/RSOC_train_2048.npy', train_list)
+    np.save('../npydata/RSOC_train.npy', train_list)
 
 
     test_list = []
     for filename in os.listdir(DOTA_test_path):
         if filename.split('.')[1] == 'png':
-            test_list.append(DOTA_test_path+filename)
+            test_list.append(DOTA_test_path.replace('..','.')+filename)
     test_list.sort()
-    np.save('../npydata/RSOC_test_2048.npy', test_list)
+    np.save('../npydata/RSOC_test.npy', test_list)
     print("Generate RSOC image list successfully")
 except:
     print("The RSOC dataset path is wrong. Please check your path.")
 
-
-# '''please set your dataset path'''
-# try:
-#     ShanghaiTech_train_path='/dssg/weixu/data_wei/ShanghaiTech/part_A_final/train_data/images/'
-#     ShanghaiTech_test_path='/dssg/weixu/data_wei/ShanghaiTech/part_A_final/test_data/images/'
-#
-#     train_list = []
-#     for filename in os.listdir(ShanghaiTech_train_path):
-#         if filename.split('.')[1] == 'jpg':
-#             train_list.append(ShanghaiTech_train_path+filename)
-#     train_list.sort()
-#     np.save('./npydata/ShanghaiTech_train.npy', train_list)
-#
-#
-#     test_list = []
-#     for filename in os.listdir(ShanghaiTech_test_path):
-#         if filename.split('.')[1] == 'jpg':
-#             test_list.append(ShanghaiTech_test_path+filename)
-#     test_list.sort()
-#     np.save('./npydata/ShanghaiTech_test.npy', test_list)
-#     print("Generate ShanghaiTech image list successfully")
-# except:
-#     print("The ShanghaiTech dataset path is wrong. Please check your path.")

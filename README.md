@@ -13,7 +13,7 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
 
 ## Pre trained model
 `RSOC_class2.pth` and `VisDrone_class8.pth` download.
-- RSOC model best (password:fbn2) [Link](https://pan.baidu.com/s/146ys_K89KT2G3irvgM812Q).
+- RSOC model best (password:t15a) [Link](https://pan.baidu.com/s/1GjwsWG6FXu6D0DRGumRQ5Q).
 - VisDrone model best (password:qsw6) [Link](https://pan.baidu.com/s/1nORmkUbV1c-5MLZvYKToiA).
 
 ## Data
@@ -35,13 +35,15 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
          └─── pre_trained.md
       -/DSACA-main/density_generate
          └─── RSOC.py
-         └─── VisDrone_class8.py
+         └─── VisDrone.py
       -/DSACA-main/make_npydata
          └─── RSOC_make_npydata.py
          └─── VisDrone_make_npydata.py
       -/DSACA-main/Network
          └─── baseline_DSAM_CAM.py
          └─── VisDrone_class8.py
+      -/DSACA-main/images
+         └─── intro.png
       └─── config.py
       └─── dataset.py
       └─── image.py
@@ -49,11 +51,11 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
       └─── RSOC_train_class2_CAM_DSAM.py
       └─── VisDrone_train_class8_CAM_DSAM.py
       └─── README.md
- ```
- 
+```
+
 # Train & Test
-- Run `density_generate/RSOC.py` and `density_generate/VisDrone_class8.py` for dataset pre-processing.
-- Run `make_npydata/RSOC.py` and `make_npydata/VisDrone_class8.py` for target path pre-saving.
+- Cd ` density_generate`  then run `RSOC.py` and ` VisDrone.py` for dataset pre-processing.
+- Cd `make_npydata`  then run ` RSOC.py` and `VisDrone.py` for target path pre-saving.
 - Edit `config.py` for training-parameters seting.
 - Run `RSOC_train_class2_CAM_DSAM.py` or `VisDrone_train_class8_CAM_DSAM.py` for training & testing.
 
