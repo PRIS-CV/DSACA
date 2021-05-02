@@ -18,8 +18,8 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
 
 ## Data
 - Download datasets  
-- Extract them to `dataset/RSOC/` and `dataset/VisDrone/`, respectively.
-* e.g., RSOC (modified from the DOTA dataset) and VisDrone datasets
+- Extract them to `dataset/VisDrone/` and `dataset/RSOC/`, respectively.
+* e.g., VisDrone and RSOC (modified from the DOTA dataset) datasets
 ```
   -/DSACA-main
       -/DSACA-main/dataset
