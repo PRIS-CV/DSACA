@@ -54,7 +54,8 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
 ```
 
 # Train & Test
-- Cd ` density_generate`  then run `RSOC_choose.py` (choose large-vehicle and small-vehicle to vehicle), `VisDrone.py` and `RSOC.py` for dataset pre-processing.
+- Cd ` density_generate`  then run `RSOC_choose.py` (choose large-vehicle and small-vehicle to vehicle) for multi-class scenario.
+- Run `VisDrone.py` and `RSOC.py` for dataset pre-processing.
 - Cd `make_npydata`  then run `VisDrone_make_npydata.py` and `RSOC_make_npydata.py` for target path pre-saving.
 - Edit `config.py` for training-parameters setting.
 - Run `VisDrone_train_class8_CAM_DSAM.py` or `RSOC_train_class2_CAM_DSAM.py` for training & testing.
