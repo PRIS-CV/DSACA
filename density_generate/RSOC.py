@@ -13,10 +13,10 @@ from scipy.ndimage.filters import gaussian_filter
 
 root = '../dataset/RSOC'
 
-test_label_pth = os.path.join(root, 'val/labelTxt-v1.5/DOTA-v1.5_val_hbb')
-test_img_pth = os.path.join(root, 'val/images')
-train_label_pth = os.path.join(root, 'train/labelTxt-v1.5/DOTA-v1.5_train_hbb')
-train_img_pth = os.path.join(root, 'train/images')
+test_label_pth = os.path.join(root, 'val_RSOC/labelTxt-v1.5/DOTA-v1.5_val_hbb')
+test_img_pth = os.path.join(root, 'val_RSOC/images')
+train_label_pth = os.path.join(root, 'train_RSOC/labelTxt-v1.5/DOTA-v1.5_train_hbb')
+train_img_pth = os.path.join(root, 'train_RSOC/images')
 
 test_data_images_pth = os.path.join(root, 'test_data', 'images')
 test_data_map_pth = os.path.join(root, 'test_data', 'gt_density_map')
