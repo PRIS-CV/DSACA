@@ -12,13 +12,13 @@ import scipy.io as io
 from shutil import copyfile
 from scipy.ndimage.filters import gaussian_filter
 
-root_DOTA = '/dssg/weixu/data_wei/RSOC'
+root_DOTA = '../dataset/RSOC'
 source_train_images_pth = os.path.join(root_DOTA, 'train/images')
 source_val_images_pth = os.path.join(root_DOTA, 'val/images')
 source_train_label_pth = os.path.join(root_DOTA, 'train/labelTxt-v1.5/DOTA-v1.5_train_hbb')
 source_val_label_pth = os.path.join(root_DOTA, 'val/labelTxt-v1.5/DOTA-v1.5_val_hbb')
 
-root_RSOC = '/dssg/weixu/data_wei/RSOC'
+root_RSOC = '../dataset/RSOC'
 target_train_images_pth = os.path.join(root_RSOC, 'train_RSOC/images')
 target_val_images_pth = os.path.join(root_RSOC, 'val_RSOC/images')
 target_train_label_pth = os.path.join(root_RSOC, 'train_RSOC/labelTxt-v1.5/DOTA-v1.5_train_hbb')
