@@ -1,5 +1,5 @@
 # DSACA
-Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class Object Counting (under review)
+Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class Object Counting (Accepted)
 
 ![Image text](https://github.com/PRIS-CV/DSACA/blob/main/images/intro.png)
 
