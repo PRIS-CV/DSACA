@@ -14,7 +14,7 @@ Code release for Dilated-Scale-Aware Category-Attention ConvNet for Multi-Class 
 ## Pre trained model
 `VisDrone_class8.pth` and `RSOC_class2.pth` download.
 - VisDrone model best (password:qsw6) [Link](https://pan.baidu.com/s/1nORmkUbV1c-5MLZvYKToiA).
-- RSOC model best (will be released when the author am free).
+- RSOC model best (will be released when the author is free).
 
 ## Data
 - Download datasets  
