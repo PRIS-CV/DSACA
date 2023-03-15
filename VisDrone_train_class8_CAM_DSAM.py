@@ -418,10 +418,10 @@ def validate(Pre_data, model, args):
         mask_bicycle = torch.max(F.softmax(mask_pre[0,2:4]), 0, keepdim=True)[1]
         mask_car = torch.max(F.softmax(mask_pre[0, 4:6]), 0, keepdim=True)[1]
         mask_van = torch.max(F.softmax(mask_pre[0, 6:8]), 0, keepdim=True)[1]
-        mask_truck = torch.max(F.softmax(mask_pre[0,0:2]), 0, keepdim=True)[1]
-        mask_tricycle= torch.max(F.softmax(mask_pre[0,2:4]), 0, keepdim=True)[1]
-        mask_bus = torch.max(F.softmax(mask_pre[0, 4:6]), 0, keepdim=True)[1]
-        mask_motor = torch.max(F.softmax(mask_pre[0, 6:8]), 0, keepdim=True)[1]
+        mask_truck = torch.max(F.softmax(mask_pre[0,8:10]), 0, keepdim=True)[1]
+        mask_tricycle= torch.max(F.softmax(mask_pre[0,10:12]), 0, keepdim=True)[1]
+        mask_bus = torch.max(F.softmax(mask_pre[0, 12:14]), 0, keepdim=True)[1]
+        mask_motor = torch.max(F.softmax(mask_pre[0, 14:16]), 0, keepdim=True)[1]
         mask_pre = torch.cat((mask_people, mask_bicycle, mask_car, mask_van, mask_truck, mask_tricycle, mask_bus, mask_motor), 0)
         mask_pre = torch.unsqueeze(mask_pre, 0)
         density_map_pre = torch.mul(density_map_pre, mask_pre)
